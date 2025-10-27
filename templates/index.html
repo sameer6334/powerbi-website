@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore interactive Power BI dashboards showcasing healthcare, finance, sales analytics and more by Sameer.">
+    <meta name="keywords" content="Power BI, Dashboards, Analytics, Data Visualization, Business Intelligence">
+    <meta name="author" content="Sameer">
+    
+    <title>Power BI Dashboard Showcase | Sameer</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-pattern"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">📊 PowerBI Hub</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#dashboards">Dashboards</a></li>
+                <li><a href="https://www.linkedin.com/in/sameer-pathak-8aa33727b/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="https://github.com/sameer6334" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Explore Interactive Power BI Dashboards</h1>
+        <p class="subtitle">
+            Discover data-driven insights through beautifully crafted visualizations.
+            <br>Built with precision by <span class="highlight">Sameer</span>.
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container" id="dashboards">
+        {% if error %}
+        <div style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.5); padding: 1.5rem; border-radius: 1rem; text-align: center; margin-bottom: 2rem;">
+            <p style="color: #fca5a5; font-size: 1.1rem; margin: 0;">⚠️ {{ error }}</p>
+        </div>
+        {% endif %}
+
+        {% if dashboards %}
+        <div class="dashboard-grid">
+            {% for dashboard in dashboards %}
+            <article class="dashboard-card" aria-label="{{ dashboard.title }}">
+                <h3>{{ dashboard.title }}</h3>
+                <p class="description">{{ dashboard.description }}</p>
+                
+                {% if dashboard.tags %}
+                <div class="tags">
+                    {% for tag in dashboard.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                {% if dashboard.data_source %}
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                    📁 Data Source: {{ dashboard.data_source }}
+                </p>
+                {% endif %}
+                
+                <a href="{{ url_for('dashboard', dashboard_id=dashboard.id) }}" class="view-btn">
+                    View Dashboard
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div style="text-align: center; padding: 4rem 2rem;">
+            <p style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 1rem;">📭 No dashboards available</p>
+            <p style="color: var(--text-secondary);">Add dashboards to <code>dashboards/dashboard.json</code> to get started.</p>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <p>
+                Designed & Built with ❤️ by <strong>Sameer</strong> | 
+                Powered by <a href="https://powerbi.microsoft.com" target="_blank" rel="noopener">Power BI</a> & 
+                <a href="https://flask.palletsprojects.com" target="_blank" rel="noopener">Flask</a>
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                © 2024 Sameer. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

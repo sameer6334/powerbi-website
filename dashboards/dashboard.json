@@ -1,0 +1,28 @@
+{
+    "dashboards": [
+      {
+        "id": "healthcare",
+        "title": "Healthcare Dashboard",
+        "description": "Meditech Nexus Hospital – Healthcare Analytics - The Meditech Nexus Hospital Dashboard is a comprehensive Power BI report designed to provide insights into patient management, hospital operations, and service quality. Built on a healthcare dataset, the dashboard enables hospital administrators and staff to monitor key metrics and make data-driven decisions efficiently.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzdlMmYzNWUtZjRhZi00YWZjLWIzYzktM2E5MmZhMjM5NDVmIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags": ["Healthcare","Billing Analysis","Pateint Management", "Analytics", "Visualization"],
+        "data_source": "https://docs.google.com/spreadsheets/d/1w4iNYeINZ_sDL6faQazI4xthyBvL-4Kr/edit?usp=drive_link&ouid=102961106192936161761&rtpof=true&sd=true"
+      },
+      {
+        "id": "finance",
+        "title": "Finance Dashboard",
+        "description": "Comprehensive financial analysis including revenue tracking, expense management, and profit margins.",
+        "embed_url": "https://app.powerbi.com/view?r=YYYYYYYYY",
+        "tags": ["Finance", "Business", "Analytics"],
+        "data_source": "ERP System"
+      },
+      {
+        "id": "sales",
+        "title": "Sales Performance Dashboard",
+        "description": "Track sales metrics, regional performance, and customer insights across multiple channels.",
+        "embed_url": "https://app.powerbi.com/view?r=ZZZZZZZZZ",
+        "tags": ["Sales", "Revenue", "Performance"],
+        "data_source": "CRM Database"
+      }
+    ]
+  }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ dashboard.description }}">
+    <meta name="keywords" content="{{ dashboard.tags|join(', ') if dashboard.tags else 'Power BI, Dashboard, Analytics' }}">
+    <meta name="author" content="Sameer">
+    
+    <title>{{ dashboard.title }} | Power BI Dashboard Showcase</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-pattern"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">📊 PowerBI Hub</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#dashboards">Dashboards</a></li>
+                <li><a href="https://www.linkedin.com/in/sameer-pathak-8aa33727b/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="https://github.com/sameer6334" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Back Button -->
+        <a href="/" class="back-btn">Back to All Dashboards</a>
+
+        <!-- Dashboard Header -->
+        <header class="dashboard-header">
+            <h1>{{ dashboard.title }}</h1>
+            <p class="description">{{ dashboard.description }}</p>
+            
+            <div class="meta">
+                {% if dashboard.data_source %}
+                <div class="meta-item">
+                    <span>📁</span>
+                    <span><strong>Data Source:</strong> {{ dashboard.data_source }}</span>
+                </div>
+                {% endif %}
+                
+                {% if dashboard.tags %}
+                <div class="meta-item">
+                    <span>🏷️</span>
+                    <span><strong>Categories:</strong> {{ dashboard.tags|join(', ') }}</span>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if dashboard.tags %}
+            <div class="tags" style="margin-top: 1rem;">
+                {% for tag in dashboard.tags %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </header>
+
+        <!-- Power BI Embed -->
+        <div class="embed-container">
+            <iframe 
+                class="powerbi-iframe"
+                src="{{ dashboard.embed_url }}" 
+                frameborder="0" 
+                allowFullScreen="true"
+                title="{{ dashboard.title }} - Power BI Dashboard"
+                aria-label="Power BI Dashboard Visualization"
+            ></iframe>
+        </div>
+
+        <!-- Dashboard Info -->
+        <div class="dashboard-header" style="margin-top: 2rem;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">About This Dashboard</h2>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                This interactive Power BI dashboard provides comprehensive insights and data visualizations.
+                Use the controls within the dashboard to filter data, explore different views, and drill down into specific metrics.
+            </p>
+            
+            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary); border-radius: 0.5rem;">
+                <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">
+                    💡 <strong>Tip:</strong> This dashboard is best viewed on desktop or tablet devices for optimal interaction.
+                    Use the fullscreen button in the Power BI toolbar for an immersive experience.
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation to Other Dashboards -->
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="/" class="view-btn" style="display: inline-flex;">
+                ← Explore More Dashboards
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                Designed & Built with ❤️ by <strong>Sameer</strong> | 
+                Powered by <a href="https://powerbi.microsoft.com" target="_blank" rel="noopener">Power BI</a> & 
+                <a href="https://flask.palletsprojects.com" target="_blank" rel="noopener">Flask</a>
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                © 2024 Sameer. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
