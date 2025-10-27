@@ -394,6 +394,120 @@
   }
   
   /* ========================================
+     DOWNLOAD BUTTONS
+  ======================================== */
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    font-size: 0.95rem;
+  }
+  
+  .download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    background: linear-gradient(135deg, #059669, #047857);
+  }
+  
+  .download-btn span:first-child {
+    font-size: 1.2rem;
+  }
+  
+  .pbix-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  }
+  
+  .pbix-btn:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+  }
+  
+  /* ========================================
+     DOWNLOAD RESOURCES SECTION
+  ======================================== */
+  .download-resources {
+    margin-top: 1.5rem;
+  }
+  
+  .download-resources h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .dataset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dataset-card {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .dataset-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+  }
+  
+  .dataset-card h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  
+  .dataset-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    flex-grow: 1;
+  }
+  
+  .dataset-card .download-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    margin-top: auto;
+  }
+  
+  .pbix-download {
+    margin-top: 1rem;
+  }
+  
+  /* Responsive adjustments for download grid */
+  @media (max-width: 768px) {
+    .dataset-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* ========================================
      FOOTER
   ======================================== */
   footer {

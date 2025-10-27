@@ -3,26 +3,64 @@
       {
         "id": "healthcare",
         "title": "Healthcare Dashboard",
-        "description": "Meditech Nexus Hospital – Healthcare Analytics - The Meditech Nexus Hospital Dashboard is a comprehensive Power BI report designed to provide insights into patient management, hospital operations, and service quality. Built on a healthcare dataset, the dashboard enables hospital administrators and staff to monitor key metrics and make data-driven decisions efficiently.",
+        "description": " Meditech Nexus Hospital – Healthcare Analytics - The Meditech Nexus Hospital Dashboard is a comprehensive Power BI report designed to provide insights into patient management, hospital operations, and service quality. Built on a healthcare dataset, the dashboard enables hospital administrators and staff to monitor key metrics and make data-driven decisions efficiently.",
         "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzdlMmYzNWUtZjRhZi00YWZjLWIzYzktM2E5MmZhMjM5NDVmIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
-        "tags": ["Healthcare","Billing Analysis","Pateint Management", "Analytics", "Visualization"],
-        "data_source": "https://docs.google.com/spreadsheets/d/1w4iNYeINZ_sDL6faQazI4xthyBvL-4Kr/edit?usp=drive_link&ouid=102961106192936161761&rtpof=true&sd=true"
+        "tags": ["Healthcare","Patient Management","Billing Analysis", "Analytics", "Visualization"],
+        "data_source": "N/A",
+        "dataset_files": [
+          {
+            "name": "Healthcare Dataset",
+            "file": "Papollo-Healtcare-Dataset.xlsx",
+            "description": "This dataset contains detailed hospital patient records, including admission and discharge dates, diagnosis, bed occupancy, tests, doctor details, follow-up dates, feedback, and billing with insurance information."
+          }
+        ],
+        "pbix_file": "Healthcare Project.pbix"
       },
       {
         "id": "finance",
-        "title": "Finance Dashboard",
-        "description": "Comprehensive financial analysis including revenue tracking, expense management, and profit margins.",
-        "embed_url": "https://app.powerbi.com/view?r=YYYYYYYYY",
-        "tags": ["Finance", "Business", "Analytics"],
-        "data_source": "ERP System"
+        "title": "PhonePe Dashboard",
+        "description": "The PhonePe Financial Services Dashboard provides a unified view of key services — Insurance, Loans, Money Transfer, Recharge, and Bills.It allows users to track transaction trends over custom date ranges, compare total transactions vs. total amount, and analyze monthly performance.A special focus is placed on monitoring failed payments, helping identify service areas with frequent issues and enabling faster, data-driven responses to improve reliability and customer experience.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiOTU3MTZlOTUtNWNkNS00ZGMyLTliN2EtMzM3OGEzNzA5NDA0IiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags": ["Finance", "PhonePe","Failed Payments","Transactions","Analytics"],
+        "data_source": "N/A",
+        "dataset_files": [
+          {
+            "name": "PhonePe Dataset",
+            "file": "Phonepe-Final-Dataset.xlsx",
+            "description": "This dataset captures transactional details of PhonePe’s financial services including insurance, loans, money transfers, recharges, and bill payments, along with payment amounts, dates, and status insights."
+          }
+        ],
+        "pbix_file": "phone_pe_Dashboard.pbix"
       },
       {
-        "id": "sales",
-        "title": "Sales Performance Dashboard",
-        "description": "Track sales metrics, regional performance, and customer insights across multiple channels.",
-        "embed_url": "https://app.powerbi.com/view?r=ZZZZZZZZZ",
-        "tags": ["Sales", "Revenue", "Performance"],
-        "data_source": "CRM Database"
+        "id": "weather",
+        "title": "Weather Forecast Dashboard",
+        "description": "This interactive Power BI dashboard delivers a 7-day weather forecast for 13 major Indian cities. It features temperature trends (line chart), rain probability (bar chart), and sunrise/sunset timings. The dashboard also includes KPIs and a donut chart highlighting key metrics like AQI, humidity, wind speed, visibility, pressure, UV index, and precipitation — allowing users to explore and compare city-wise and day-wise weather conditions effectively.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzg5OTBkZTEtNzk3Yy00NzY4LTkzODQtMDYxMmE2OTZmNjJlIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags": ["PowerBIDashboard", "WeatherForecast", "DataVisualization", "InteractiveAnalytics", "ClimateInsights"],
+        "data_source": "weatherapi.com",
+        "dataset_files": [
+          {
+            "name": "Current Weather",
+            "file": "Current.xlsx",
+            "description": "This is the dataset of Current Weather"
+          },
+          {
+            "name": "Weather Forecast Day Wise",
+            "file": "Forecast_Day.xlsx",
+            "description": "This is the dataset of Day Wise Weather Forecasting"
+          },
+          {
+            "name": "Weather Forecast Hour Wise",
+            "file": "Forecast_Hour.xlsx",
+            "description": "This is the dataset of Hour Wise Weather Forecasting"
+          },{
+            "name": "Master Report",
+            "file": "MasterReport.xlsx",
+            "description": "This is the master report which include current weather data and weather forecasting data"
+          }
+        ],
+        "pbix_file": "Weather Dashboard.pbix"
       }
     ]
   }

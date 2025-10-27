@@ -70,6 +70,51 @@
                 {% endfor %}
             </div>
             {% endif %}
+
+            <!-- Download Buttons -->
+            {% if dashboard.dataset_files or dashboard.dataset_file or dashboard.pbix_file %}
+            <div class="download-resources">
+                <h3>📥 Download Resources</h3>
+                
+                <!-- Multiple Dataset Files -->
+                {% if dashboard.dataset_files %}
+                <div class="dataset-grid">
+                    {% for dataset in dashboard.dataset_files %}
+                    <div class="dataset-card">
+                        <h4>{{ dataset.name }}</h4>
+                        {% if dataset.description %}
+                        <p>{{ dataset.description }}</p>
+                        {% endif %}
+                        <a href="{{ url_for('download_dataset', dashboard_id=dashboard.id, file_index=loop.index0) }}" class="download-btn" download>
+                            <span>📊</span>
+                            <span>Download</span>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <!-- Single Dataset File (Backward Compatibility) -->
+                {% if dashboard.dataset_file and not dashboard.dataset_files %}
+                <div style="margin-bottom: 1rem;">
+                    <a href="{{ url_for('download_dataset', dashboard_id=dashboard.id) }}" class="download-btn" download>
+                        <span>📊</span>
+                        <span>Download Dataset</span>
+                    </a>
+                </div>
+                {% endif %}
+                
+                <!-- PBIX File -->
+                {% if dashboard.pbix_file %}
+                <div class="pbix-download">
+                    <a href="{{ url_for('download_pbix', dashboard_id=dashboard.id) }}" class="download-btn pbix-btn" download>
+                        <span>📂</span>
+                        <span>Download PBIX File</span>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
         </header>
 
         <!-- Power BI Embed -->
@@ -115,6 +160,15 @@
                 Designed & Built with ❤️ by <strong>Sameer</strong> | 
                 Powered by <a href="https://powerbi.microsoft.com" target="_blank" rel="noopener">Power BI</a> & 
                 <a href="https://flask.palletsprojects.com" target="_blank" rel="noopener">Flask</a>
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.95rem;">
+                <a href="https://www.linkedin.com/in/sameer-pathak-8aa33727b/" target="_blank" rel="noopener" style="margin: 0 1rem; text-decoration: none;">
+                    🔗 LinkedIn
+                </a>
+                |
+                <a href="https://github.com/sameer6334" target="_blank" rel="noopener" style="margin: 0 1rem; text-decoration: none;">
+                    💻 GitHub
+                </a>
             </p>
             <p style="margin-top: 0.5rem; font-size: 0.85rem;">
                 © 2024 Sameer. All rights reserved.
