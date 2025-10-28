@@ -61,6 +61,22 @@
           }
         ],
         "pbix_file": "Weather Dashboard.pbix"
+      },
+      {
+        "id": "spotify",
+        "title": "Spotify Dashboard",
+        "description": "This Spotify Dashboard offers a complete data-driven view of music trends across songs, artists, and albums. It includes KPIs, interactive charts, and detailed analytics for popularity, duration, and release patterns — all presented through an intuitive, multi-page Power BI interface with an interactive media player for an engaging experience.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZDUyYjE1MzAtYTg2OC00NTdkLTlmMmMtZjEzMDViZDA5MmUwIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags": ["Spotify", "MusicAnalytics", "DataVisualization", "PowerBI", "InteractiveDashboard"],
+        "data_source": "N/A",
+        "dataset_files": [
+          {
+            "name": "Spotify Dataset",
+            "file": "spotify-top-50-world.csv",
+            "description": "This dataset contains detailed information about Spotify tracks, including song names, artists, album types, popularity scores, durations, release dates, and explicit content flags, used to analyze music trends and performance metrics."
+          }
+        ],
+        "pbix_file": "Spotify Dashboard.pbix"
       }
     ]
   }
