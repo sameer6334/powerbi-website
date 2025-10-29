@@ -1,309 +1,822 @@
-// ========================================
-// INITIALIZATION
-// ========================================
-document.addEventListener('DOMContentLoaded', function() {
-    initializeAnimations();
-    initializeCardInteractions();
-    initializeIframeLoading();
-});
-
-// ========================================
-// SCROLL ANIMATIONS
-// ========================================
-function initializeAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe all dashboard cards
-    const cards = document.querySelectorAll('.dashboard-card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `all 0.6s ease ${index * 0.1}s`;
-        observer.observe(card);
-    });
-}
-
-// ========================================
-// CARD INTERACTIONS
-// ========================================
-function initializeCardInteractions() {
-    const cards = document.querySelectorAll('.dashboard-card');
+/* ========================================
+   GLOBAL STYLES & RESET
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    /* Color Palette */
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --accent: #ec4899;
+    --background: #0f172a;
+    --surface: #1e293b;
+    --surface-light: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
     
-    cards.forEach(card => {
-        // Add click event to entire card
-        card.addEventListener('click', function(e) {
-            // Don't navigate if clicking the button directly
-            if (!e.target.classList.contains('view-btn')) {
-                const link = card.querySelector('.view-btn');
-                if (link) {
-                    window.location.href = link.href;
-                }
-            }
-        });
-
-        // Add keyboard navigation
-        card.setAttribute('tabindex', '0');
-        card.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const link = card.querySelector('.view-btn');
-                if (link) {
-                    window.location.href = link.href;
-                }
-            }
-        });
-
-        // Tilt effect on hover
-        card.addEventListener('mousemove', function(e) {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-        });
-
-        card.addEventListener('mouseleave', function() {
-            card.style.transform = '';
-        });
-    });
-}
-
-// ========================================
-// IFRAME LOADING
-// ========================================
-function initializeIframeLoading() {
-    const iframe = document.querySelector('.powerbi-iframe');
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
     
-    if (iframe) {
-        // Show loading indicator
-        const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'loading';
-        loadingDiv.style.position = 'absolute';
-        loadingDiv.style.top = '50%';
-        loadingDiv.style.left = '50%';
-        loadingDiv.style.transform = 'translate(-50%, -50%)';
-        
-        const container = iframe.parentElement;
-        container.style.position = 'relative';
-        container.style.minHeight = '85vh';
-        container.appendChild(loadingDiv);
-
-        // Hide loading when iframe loads
-        iframe.addEventListener('load', function() {
-            loadingDiv.style.display = 'none';
-            iframe.style.opacity = '0';
-            iframe.style.transition = 'opacity 0.5s ease';
-            
-            setTimeout(() => {
-                iframe.style.opacity = '1';
-            }, 100);
-        });
-
-        // Handle iframe errors
-        iframe.addEventListener('error', function() {
-            loadingDiv.style.display = 'none';
-            
-            const errorMsg = document.createElement('div');
-            errorMsg.style.cssText = `
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                text-align: center;
-                color: #ef4444;
-                font-size: 1.2rem;
-                padding: 2rem;
-            `;
-            errorMsg.innerHTML = `
-                <p>⚠️ Failed to load dashboard</p>
-                <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">
-                    Please check the embed URL or try again later.
-                </p>
-            `;
-            container.appendChild(errorMsg);
-        });
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* ========================================
+     ANIMATED BACKGROUND
+  ======================================== */
+  .background-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1;
+    background-image: 
+      radial-gradient(circle at 20% 50%, var(--primary) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, var(--secondary) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, var(--accent) 0%, transparent 50%);
+    animation: backgroundShift 20s ease-in-out infinite;
+  }
+  
+  @keyframes backgroundShift {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+  
+  /* ========================================
+     NAVIGATION
+  ======================================== */
+  nav {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .logo:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: var(--spacing-lg);
+    list-style: none;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: var(--text-primary);
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  
+  /* ========================================
+     HERO SECTION
+  ======================================== */
+  .hero {
+    text-align: center;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
-}
-
-// ========================================
-// SMOOTH SCROLL
-// ========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// ========================================
-// NAVIGATION SCROLL EFFECT
-// ========================================
-let lastScroll = 0;
-const nav = document.querySelector('nav');
-
-window.addEventListener('scroll', function() {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        nav.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)';
-    } else {
-        nav.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.4)';
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--text-primary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+  
+  .hero .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 400;
+  }
+  
+  .hero .highlight {
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  /* ========================================
+     CONTAINER & LAYOUT
+  ======================================== */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  /* ========================================
+     DASHBOARD GRID
+  ======================================== */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    animation: fadeIn 1s ease 0.3s both;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* ========================================
+     DASHBOARD CARD WITH THUMBNAIL
+  ======================================== */
+  .dashboard-card {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Thumbnail Section */
+  .dashboard-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--surface), var(--surface-light));
+  }
+  
+  .dashboard-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  
+  .dashboard-card:hover .dashboard-thumbnail img {
+    transform: scale(1.05);
+  }
+  
+  .thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: var(--spacing-md);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .dashboard-card:hover .thumbnail-overlay {
+    opacity: 1;
+  }
+  
+  .view-icon {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Card Content */
+  .card-content {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .dashboard-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  
+  .dashboard-card .description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
+    font-size: 0.9rem;
+    flex-grow: 1;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .tag {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--primary);
+    padding: 0.25rem 0.7rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+  }
+  
+  .view-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  }
+  
+  .view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+  }
+  
+  /* ========================================
+     NO DASHBOARDS MESSAGE
+  ======================================== */
+  .no-dashboards {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  
+  .no-dash-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .no-dash-text {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .no-dash-subtext {
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }
+  
+  /* ========================================
+     DASHBOARD PAGE
+  ======================================== */
+  .dashboard-header {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    animation: fadeInUp 0.8s ease;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  
+  .dashboard-header .description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .dashboard-header .meta {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+  
+  .dashboard-header .meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+  
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    transition: all 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    color: var(--primary);
+    transform: translateX(-5px);
+  }
+  
+  .back-btn::before {
+    content: '←';
+    transition: transform 0.3s ease;
+  }
+  
+  .back-btn:hover::before {
+    transform: translateX(-5px);
+  }
+  
+  /* ========================================
+     POWER BI EMBED
+  ======================================== */
+  .embed-container {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 1s ease 0.3s both;
+  }
+  
+  .powerbi-iframe {
+    width: 100%;
+    height: 85vh;
+    border: none;
+    border-radius: var(--radius-md);
+    background: white;
+  }
+  
+  /* ========================================
+     DOWNLOAD RESOURCES SECTION
+  ======================================== */
+  .download-resources {
+    margin-top: 1.5rem;
+  }
+  
+  .download-resources h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .dataset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dataset-card {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .dataset-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+  }
+  
+  .dataset-card h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  
+  .dataset-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    flex-grow: 1;
+  }
+  
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  }
+  
+  .download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    background: linear-gradient(135deg, #059669, #047857);
+  }
+  
+  .pbix-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  }
+  
+  .pbix-btn:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+  }
+  
+  .pbix-download {
+    margin-top: 1rem;
+  }
+  
+  /* ========================================
+     FOOTER
+  ======================================== */
+  footer {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    text-align: center;
+    margin-top: var(--spacing-2xl);
+  }
+  
+  .footer-main {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    margin: 0 0.5rem;
+  }
+  
+  .footer-links .divider {
+    color: var(--text-muted);
+    margin: 0 0.5rem;
+  }
+  
+  .footer-links a:hover {
+    color: var(--secondary);
+  }
+  
+  .footer-copy {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  
+  /* ========================================
+     RESPONSIVE DESIGN
+  ======================================== */
+  
+  /* Tablet View (768px) */
+  @media (max-width: 768px) {
+    /* Navigation */
+    nav {
+      padding: 0.75rem 0;
     }
     
-    lastScroll = currentScroll;
-});
-
-// ========================================
-// TAG INTERACTIONS
-// ========================================
-const tags = document.querySelectorAll('.tag');
-tags.forEach(tag => {
-    tag.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const tagText = tag.textContent;
-        console.log(`Filtering by tag: ${tagText}`);
-        // Future enhancement: Filter dashboards by tag
-    });
-});
-
-// ========================================
-// COPY EMBED URL (DASHBOARD PAGE)
-// ========================================
-function copyEmbedUrl() {
-    const iframe = document.querySelector('.powerbi-iframe');
-    if (iframe) {
-        const url = iframe.src;
-        navigator.clipboard.writeText(url).then(function() {
-            showNotification('Embed URL copied to clipboard!');
-        }).catch(function() {
-            showNotification('Failed to copy URL', 'error');
-        });
-    }
-}
-
-// ========================================
-// NOTIFICATION SYSTEM
-// ========================================
-function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? '#10b981' : '#ef4444'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
-        animation: slideIn 0.3s ease;
-        font-weight: 500;
-    `;
-    notification.textContent = message;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
-
-// Add animation keyframes
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+    .nav-container {
+      padding: 0 1rem;
+      gap: 0.75rem;
     }
     
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ========================================
-// PERFORMANCE OPTIMIZATION
-// ========================================
-// Lazy load images if any are added in the future
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    document.querySelectorAll('img.lazy').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
-
-// ========================================
-// KEYBOARD SHORTCUTS
-// ========================================
-document.addEventListener('keydown', function(e) {
-    // Press 'Esc' to go back on dashboard page
-    if (e.key === 'Escape') {
-        const backBtn = document.querySelector('.back-btn');
-        if (backBtn) {
-            window.location.href = backBtn.href;
-        }
+    .logo {
+      font-size: 1.2rem;
     }
     
-    // Press 'H' to go home
-    if (e.key === 'h' || e.key === 'H') {
-        if (!e.target.matches('input, textarea')) {
-            window.location.href = '/';
-        }
+    .nav-links {
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-});
-
-// ========================================
-// CONSOLE EASTER EGG
-// ========================================
-console.log('%c🚀 Power BI Dashboard Showcase', 'font-size: 20px; font-weight: bold; color: #6366f1;');
-console.log('%cBuilt with Flask & Modern Web Technologies', 'font-size: 12px; color: #94a3b8;');
-console.log('%cDesigned by Sameer', 'font-size: 12px; color: #8b5cf6;');
+    
+    .nav-links a {
+      font-size: 0.85rem;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 2rem 1rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.2rem;
+      line-height: 1.3;
+    }
+    
+    .hero .subtitle {
+      font-size: 1rem;
+    }
+    
+    /* Dashboard Grid */
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    /* Dashboard Card */
+    .dashboard-thumbnail {
+      height: 180px;
+    }
+    
+    .card-content {
+      padding: 1rem;
+    }
+    
+    .dashboard-card h3 {
+      font-size: 1.25rem;
+    }
+    
+    .dashboard-card .description {
+      font-size: 0.875rem;
+    }
+    
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+    }
+    
+    /* Dashboard Page */
+    .dashboard-header {
+      padding: 1.5rem;
+    }
+    
+    .dashboard-header h1 {
+      font-size: 1.75rem;
+    }
+    
+    .dashboard-header .meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .powerbi-iframe {
+      height: 60vh;
+    }
+    
+    /* Download Section */
+    .dataset-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .dataset-card {
+      padding: 0.875rem;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 2rem 1rem;
+    }
+    
+    .footer-main, .footer-links {
+      font-size: 0.85rem;
+    }
+    
+    .footer-copy {
+      font-size: 0.8rem;
+    }
+    
+    /* Container */
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  }
+  
+  /* Mobile View (480px) */
+  @media (max-width: 480px) {
+    /* Hero */
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+    
+    .hero .subtitle {
+      font-size: 0.9rem;
+    }
+    
+    /* Navigation */
+    .logo {
+      font-size: 1.1rem;
+    }
+    
+    .nav-links {
+      gap: 0.5rem;
+    }
+    
+    .nav-links a {
+      font-size: 0.8rem;
+      padding: 0.25rem 0;
+    }
+    
+    /* Dashboard Card */
+    .dashboard-thumbnail {
+      height: 160px;
+    }
+    
+    .card-content {
+      padding: 0.875rem;
+    }
+    
+    .dashboard-card h3 {
+      font-size: 1.1rem;
+    }
+    
+    .dashboard-card .description {
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    
+    .view-btn {
+      padding: 0.65rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    
+    /* Dashboard Page */
+    .dashboard-header h1 {
+      font-size: 1.5rem;
+    }
+    
+    .powerbi-iframe {
+      height: 50vh;
+    }
+    
+    /* Container */
+    .container {
+      padding: 1rem 0.75rem;
+    }
+    
+    /* No Dashboards */
+    .no-dash-icon {
+      font-size: 3rem;
+    }
+    
+    .no-dash-text {
+      font-size: 1.25rem;
+    }
+    
+    .no-dash-subtext {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* ========================================
+     LOADING ANIMATION
+  ======================================== */
+  .loading {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(99, 102, 241, 0.2);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: var(--spacing-2xl) auto;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* ========================================
+     UTILITY CLASSES
+  ======================================== */
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-lg {
+    margin-top: var(--spacing-lg);
+  }
+  
+  .mb-lg {
+    margin-bottom: var(--spacing-lg);
+  }

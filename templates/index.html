@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore interactive Power BI dashboards showcasing healthcare, finance, sales analytics and more by Sameer.">
-    <meta name="keywords" content="Power BI, Dashboards, Analytics, Data Visualization, Business Intelligence">
+    <meta name="description" content="Explore interactive Power BI dashboards by Sameer.">
     <meta name="author" content="Sameer">
     
     <title>Power BI Dashboard Showcase | Sameer</title>
@@ -48,58 +47,72 @@
 
     <!-- Main Content -->
     <main class="container" id="dashboards">
-        {% if error %}
-        <div style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.5); padding: 1.5rem; border-radius: 1rem; text-align: center; margin-bottom: 2rem;">
-            <p style="color: #fca5a5; font-size: 1.1rem; margin: 0;">⚠️ {{ error }}</p>
-        </div>
-        {% endif %}
-
         {% if dashboards %}
         <div class="dashboard-grid">
             {% for dashboard in dashboards %}
-            <article class="dashboard-card" aria-label="{{ dashboard.title }}">
-                <h3>{{ dashboard.title }}</h3>
-                <p class="description">{{ dashboard.description }}</p>
-                
-                {% if dashboard.tags %}
-                <div class="tags">
-                    {% for tag in dashboard.tags %}
-                    <span class="tag">{{ tag }}</span>
-                    {% endfor %}
+            <article class="dashboard-card" onclick="window.location.href='{{ url_for('dashboard', dashboard_id=dashboard.id) }}'">
+                <!-- Thumbnail Image -->
+                {% if dashboard.thumbnail %}
+                <div class="dashboard-thumbnail">
+                    <img src="{{ url_for('static', filename='thumbnails/' + dashboard.thumbnail) }}" 
+                         alt="{{ dashboard.title }}"
+                         loading="lazy"
+                         onerror="this.onerror=null; this.src='{{ url_for('static', filename='thumbnails/default.png') }}'">
+                    <div class="thumbnail-overlay">
+                        <span class="view-icon">👁️ View Dashboard</span>
+                    </div>
                 </div>
                 {% endif %}
                 
-                {% if dashboard.data_source %}
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
-                    📁 Data Source: {{ dashboard.data_source }}
-                </p>
-                {% endif %}
-                
-                <a href="{{ url_for('dashboard', dashboard_id=dashboard.id) }}" class="view-btn">
-                    View Dashboard
-                </a>
+                <div class="card-content">
+                    <h3>{{ dashboard.title }}</h3>
+                    <p class="description">{{ dashboard.description[:120] }}{% if dashboard.description|length > 120 %}...{% endif %}</p>
+                    
+                    {% if dashboard.tags %}
+                    <div class="tags">
+                        {% for tag in dashboard.tags[:3] %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                        {% if dashboard.tags|length > 3 %}
+                        <span class="tag">+{{ dashboard.tags|length - 3 }}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    <a href="{{ url_for('dashboard', dashboard_id=dashboard.id) }}" class="view-btn" onclick="event.stopPropagation()">
+                        View Dashboard
+                    </a>
+                </div>
             </article>
             {% endfor %}
         </div>
         {% else %}
-        <div style="text-align: center; padding: 4rem 2rem;">
-            <p style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 1rem;">📭 No dashboards available</p>
-            <p style="color: var(--text-secondary);">Add dashboards to <code>dashboards/dashboard.json</code> to get started.</p>
+        <div class="no-dashboards">
+            <p class="no-dash-icon">📭</p>
+            <p class="no-dash-text">No dashboards available</p>
+            <p class="no-dash-subtext">Add dashboards to dashboard.json to get started.</p>
         </div>
         {% endif %}
     </main>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
-            <p>
+            <p class="footer-main">
                 Designed & Built with ❤️ by <strong>Sameer</strong> | 
                 Powered by <a href="https://powerbi.microsoft.com" target="_blank" rel="noopener">Power BI</a> & 
                 <a href="https://flask.palletsprojects.com" target="_blank" rel="noopener">Flask</a>
             </p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
-                © 2024 Sameer. All rights reserved.
+            <p class="footer-links">
+                <a href="https://www.linkedin.com/in/sameer-pathak-8aa33727b/" target="_blank" rel="noopener">
+                    🔗 LinkedIn
+                </a>
+                <span class="divider">|</span>
+                <a href="https://github.com/sameer6334" target="_blank" rel="noopener">
+                    💻 GitHub
+                </a>
             </p>
+            <p class="footer-copy">© 2024 Sameer. All rights reserved.</p>
         </div>
     </footer>
 

@@ -7,6 +7,7 @@
         "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzdlMmYzNWUtZjRhZi00YWZjLWIzYzktM2E5MmZhMjM5NDVmIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
         "tags": ["Healthcare","Patient Management","Billing Analysis", "Analytics", "Visualization"],
         "data_source": "N/A",
+        "thumbnail" : "healthcare.png",
         "dataset_files": [
           {
             "name": "Healthcare Dataset",
@@ -23,6 +24,7 @@
         "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiOTU3MTZlOTUtNWNkNS00ZGMyLTliN2EtMzM3OGEzNzA5NDA0IiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
         "tags": ["Finance", "PhonePe","Failed Payments","Transactions","Analytics"],
         "data_source": "N/A",
+        "thumbnail" : "PhonePe.png",
         "dataset_files": [
           {
             "name": "PhonePe Dataset",
@@ -39,6 +41,7 @@
         "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzg5OTBkZTEtNzk3Yy00NzY4LTkzODQtMDYxMmE2OTZmNjJlIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
         "tags": ["PowerBIDashboard", "WeatherForecast", "DataVisualization", "InteractiveAnalytics", "ClimateInsights"],
         "data_source": "weatherapi.com",
+        "thumbnail" : "weather.png",
         "dataset_files": [
           {
             "name": "Current Weather",
@@ -69,6 +72,7 @@
         "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZDUyYjE1MzAtYTg2OC00NTdkLTlmMmMtZjEzMDViZDA5MmUwIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
         "tags": ["Spotify", "MusicAnalytics", "DataVisualization", "PowerBI", "InteractiveDashboard"],
         "data_source": "N/A",
+        "thumbnail" : "spotify.png",
         "dataset_files": [
           {
             "name": "Spotify Dataset",
@@ -77,6 +81,34 @@
           }
         ],
         "pbix_file": "Spotify Dashboard.pbix"
+      },
+      {
+        "id": "sales dashboard",
+        "title": "Amazon Sales Dashboard",
+        "description": "This Power BI dashboard provides a comprehensive analysis of Amazon's sales data, delivering actionable insights into key business areas like order fulfillment, shipping, and category performance. It is designed to enhance decision-making and streamline operations.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZjdkNzE2MWQtOTg1ZC00ODZjLThhYTUtMWJmOTIwZjcxMjJlIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags": ["Amazon Sales", "Ecommerce Analytics", "Power BI Dashboard", "Sales Performance", "Data Visualization"],
+        "data_source": "N/A",
+        "thumbnail" : "amazon.jpg",
+        "dataset_files": [
+          {
+            "name": "Amazon Sales Dashboard",
+            "file": "Amazon-Sales-Report-80K-Rows.xlsx",
+            "description": "This dataset contains detailed transactional data of Amazon sales, including product categories, order details, customer information, and revenue metrics across multiple regions."
+          }
+        ],
+        "pbix_file": "amazon dashboard.pbix"
+      },
+      {
+        "id": "career analysis",
+        "title": "Virat Kohli Career Statistics Analysis",
+        "description": "This Power BI dashboard provides an in-depth analysis of the illustrious career of Virat Kohli, one of the greatest cricketers of our era. The dashboard covers key performance metrics, milestones, and trends across different formats of the game (Test, ODI, T20I, and IPL).",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZjdkNzE2MWQtOTg1ZC00ODZjLThhYTUtMWJmOTIwZjcxMjJlIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags": ["Cricket Analytics", "Virat Kohli Dashboard", "Sports Data Visualization", "Career Performance Analysis", "Power BI Project"],
+        "data_source": "N/A",
+        "thumbnail" : "VIRAT KOHLI.png",
+        
+        "pbix_file": "virat kohli dashboard.pbix"
       }
     ]
   }
