@@ -83,6 +83,25 @@
         "pbix_file": "Spotify Dashboard.pbix"
       },
       {
+        "id": "OLA Rides Analytics Dashboard",
+        "title": "OLA Rides Analytics Dashboard",
+        "description": "The goal behind creating this dashboard was to analyze OLA’s operational and customer data to gain insights into ride trends, revenue performance, cancellation reasons, and user satisfaction. Through this project, I aimed to showcase how Power BI can turn raw ride data into meaningful, actionable business insights — helping ride-sharing platforms improve efficiency and customer experience.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZGY4ZTY1OGEtYzQyOC00ZmE2LTk3NjMtOTgxYTNkYTBjYmMxIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags" : ["Power BI", "Data Visualization", "Business Analytics", "Ride Sharing Insights", "Dashboard Design"]
+        ,
+        "data_source": "N/A",
+        "thumbnail" : "ola.png",
+        "dataset_files": [
+          {
+            "name": "Ola Dashboard Datset",
+            "file": "Bookings-100000-Rows.xlsx",
+            "description": "Comprehensive OLA booking data analyzing rides, revenue, cancellations, and customer-driver ratings."
+          }
+        ],
+        
+        "pbix_file": "Ola Dashboard.pbix"
+      },
+      {
         "id": "sales dashboard",
         "title": "Amazon Sales Dashboard",
         "description": "This Power BI dashboard provides a comprehensive analysis of Amazon's sales data, delivering actionable insights into key business areas like order fulfillment, shipping, and category performance. It is designed to enhance decision-making and streamline operations.",
