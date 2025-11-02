@@ -21,7 +21,7 @@
         "id": "finance",
         "title": "PhonePe Dashboard",
         "description": "The PhonePe Financial Services Dashboard provides a unified view of key services — Insurance, Loans, Money Transfer, Recharge, and Bills.It allows users to track transaction trends over custom date ranges, compare total transactions vs. total amount, and analyze monthly performance.A special focus is placed on monitoring failed payments, helping identify service areas with frequent issues and enabling faster, data-driven responses to improve reliability and customer experience.",
-        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiOTU3MTZlOTUtNWNkNS00ZGMyLTliN2EtMzM3OGEzNzA5NDA0IiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiOTU3MTZlOTUtNWNkNS00ZGMyLTliN2EtMzM3OGEzNzA5NDA0IiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9&pageName=fa906dedf434f23a3153",
         "tags": ["Finance", "PhonePe","Failed Payments","Transactions","Analytics"],
         "data_source": "N/A",
         "thumbnail" : "PhonePe.png",
@@ -69,7 +69,7 @@
         "id": "spotify",
         "title": "Spotify Dashboard",
         "description": "This Spotify Dashboard offers a complete data-driven view of music trends across songs, artists, and albums. It includes KPIs, interactive charts, and detailed analytics for popularity, duration, and release patterns — all presented through an intuitive, multi-page Power BI interface with an interactive media player for an engaging experience.",
-        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZDUyYjE1MzAtYTg2OC00NTdkLTlmMmMtZjEzMDViZDA5MmUwIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZDUyYjE1MzAtYTg2OC00NTdkLTlmMmMtZjEzMDViZDA5MmUwIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9&pageName=a7a1e95803b01e869380",
         "tags": ["Spotify", "MusicAnalytics", "DataVisualization", "PowerBI", "InteractiveDashboard"],
         "data_source": "N/A",
         "thumbnail" : "spotify.png",
@@ -86,7 +86,7 @@
         "id": "OLA Rides Analytics Dashboard",
         "title": "OLA Rides Analytics Dashboard",
         "description": "The goal behind creating this dashboard was to analyze OLA’s operational and customer data to gain insights into ride trends, revenue performance, cancellation reasons, and user satisfaction. Through this project, I aimed to showcase how Power BI can turn raw ride data into meaningful, actionable business insights — helping ride-sharing platforms improve efficiency and customer experience.",
-        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZGY4ZTY1OGEtYzQyOC00ZmE2LTk3NjMtOTgxYTNkYTBjYmMxIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZGY4ZTY1OGEtYzQyOC00ZmE2LTk3NjMtOTgxYTNkYTBjYmMxIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9&pageName=daa7d71a355e21f1ba3e",
         "tags" : ["Power BI", "Data Visualization", "Business Analytics", "Ride Sharing Insights", "Dashboard Design"]
         ,
         "data_source": "N/A",
@@ -100,6 +100,43 @@
         ],
         
         "pbix_file": "Ola Dashboard.pbix"
+      },
+      {
+        "id": "Zomato",
+        "title": "Zomato Analytics Dashboard",
+        "description": "The Zomato Analytics Dashboard provides an interactive overview of Zomato’s sales, users, and city performance. It highlights total sales, quantity, ratings, and orders with dynamic Amount and Quantity views. The dashboard includes city-wise (Veg/Non-Veg) and yearly sales trends, user insights on gained/lost customers, active users, and age distribution, along with city-level filters for detailed analysis of sales, orders, and ratings—offering a clear view of Zomato’s overall growth and engagement.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMzk4NzU5YzctNTgzYS00MzJhLWFiNjItNGE0MDA5MGYxMTk3IiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9&pageName=e85a10a8cee876408782",
+        "tags": ["Zomato Dashboard", "Sales Analysis", "User Insights", "City Performance", "Power BI Project"],
+        "data_source": "N/A",
+        "thumbnail" : "zomato.png",
+        "dataset_files": [
+          {
+            "name": "Food",
+            "file": "food.xlsx",
+            "description": "Contains details of food items, including type (Veg/Non-Veg), category, and pricing information."
+          },
+          {
+            "name": "Menu",
+            "file": "menu.xlsx",
+            "description": "Lists restaurant menus linking food items with restaurant IDs and availability."
+          },
+          {
+            "name": "Orders",
+            "file": "orders.xlsx",
+            "description": "Includes order-level data such as order ID, user ID, food ID, quantity, amount, and ratings."
+          },
+          {
+            "name": "Restaurant",
+            "file": "restaurant.xlsx",
+            "description": "Provides restaurant details like name, city, and performance metrics."
+          },
+          {
+            "name": "Users",
+            "file": "users.xlsx",
+            "description": "Contains user demographic data including age, gender, and customer activity status."
+          }
+        ],
+        "pbix_file": "Zomato Dashboards.pbix"
       },
       {
         "id": "sales dashboard",
