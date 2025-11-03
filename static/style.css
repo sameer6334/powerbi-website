@@ -50,26 +50,16 @@ body {
 }
 
 /* ========================================
-   ANIMATED BACKGROUND
+   PARTICLES BACKGROUND
 ======================================== */
-.background-pattern {
+#particles-js {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.1;
-  background-image: 
-    radial-gradient(circle at 20% 50%, var(--primary) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, var(--secondary) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, var(--accent) 0%, transparent 50%);
-  animation: backgroundShift 20s ease-in-out infinite;
-}
-
-@keyframes backgroundShift {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-20px) scale(1.05); }
+  opacity: 0.5;
 }
 
 /* ========================================
