@@ -139,6 +139,23 @@
         "pbix_file": "Zomato Dashboards.pbix"
       },
       {
+        "id": "ATM Transaction",
+        "title": "ATM Transaction Analysis Dashboard",
+        "description": "The ATM Transaction Analysis Dashboard provides a comprehensive overview of ATM performance, costs, and profitability across multiple states. The Overview Page highlights cost components such as site maintenance, spare repairs, and AMC charges, supported by visual insights through revenue, uptime, and transaction trend charts. Key metrics like total cost, gross profit, average monthly revenue, and taxation are summarized with interactive month-wise buttons. The Detail Page enables deeper analysis with revenue performance tables, range analysis by ATM ID, and filters based on state, ATM, and type, allowing users to evaluate both current and previous month trends efficiently.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiM2Q2NWI4NmUtOTBlMC00MjY4LWE2ZGMtZDc3Njg5NDU0NzZjIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9&pageName=c765a8a6f20fe64e03be",
+        "tags": ["ATMAnalytics", "FinancialDashboard", "PowerBIDashboard", "DataDrivenInsights", "OperationalEfficiency"],
+        "data_source": "N/A",
+        "thumbnail" : "atm.png",
+        "dataset_files": [
+          {
+            "name": "ATM",
+            "file": "BOB_Source.xlsx",
+            "description": "This dataset contains ATM transaction and performance data, including financial and non-financial transactions, uptime, revenue, and maintenance costs across different states and months."
+          }
+        ],
+        "pbix_file": "ATM Transaction Analysis Dashboard.pbix"
+      },
+      {
         "id": "sales dashboard",
         "title": "Amazon Sales Dashboard",
         "description": "This Power BI dashboard provides a comprehensive analysis of Amazon's sales data, delivering actionable insights into key business areas like order fulfillment, shipping, and category performance. It is designed to enhance decision-making and streamline operations.",
