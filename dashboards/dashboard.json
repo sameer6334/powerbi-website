@@ -156,6 +156,33 @@
         "pbix_file": "ATM Transaction Analysis Dashboard.pbix"
       },
       {
+        "id": "watch_sales",
+        "title": "Watch Performance Tracker Dashboard",
+        "description": "A comprehensive dashboard to track yearly sales performance, compare growth trends between 2024 and 2025, monitor budgets, and analyze watch sales by segments, categories, and monthly orders.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMWJlMjgyN2ItYzE3Ny00ZGIzLTk2NTUtYjg1N2ZiMDVlNGJlIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags": ["PowerBI", "SalesDashboard", "DataAnalytics", "WatchPerformance", "BusinessIntelligence"],
+        "data_source": "N/A",
+        "thumbnail" : "watch.png",
+        "dataset_files": [
+          {
+            "name": "Budget",
+            "file": "Budget.xlsx",
+            "description": "Contains yearly and monthly budget allocation data for different product categories and states, helping compare actual vs. planned performance."
+          },
+          {
+            "name": "Details",
+            "file": "Deatils.xlsx",
+            "description": "Includes order-level details such as category, sub-category, quantity, profit, and payment mode for deeper sales insights."
+          },
+          {
+            "name": "Orders",
+            "file": "Watch-Orders.xlsx",
+            "description": "Stores customer and order transaction information, including order date, customer name, and location details for tracking sales distribution."
+          }
+        ],
+        "pbix_file": "Watch Performance Tracker Dashboard.pbix"
+      },
+      {
         "id": "sales dashboard",
         "title": "Amazon Sales Dashboard",
         "description": "This Power BI dashboard provides a comprehensive analysis of Amazon's sales data, delivering actionable insights into key business areas like order fulfillment, shipping, and category performance. It is designed to enhance decision-making and streamline operations.",
