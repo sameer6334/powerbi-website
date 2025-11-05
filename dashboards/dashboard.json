@@ -183,6 +183,23 @@
         "pbix_file": "Watch Performance Tracker Dashboard.pbix"
       },
       {
+        "id": "fitness dashboard",
+        "title": "Fitness Analytics Hub",
+        "description": "This Power BI dashboard addresses key business needs in a gym/fitness center environment.It provides overall business performance insights, monthly revenue–expense tracking, and membership status monitoring across tiers.A health calculator is included to compute BMI, BMR, and TDEE based on user inputs.The dashboard also features detailed member profiles for quick review and a dynamic theme switcher with five color modes that updates all pages—Home, Overview, Calculator, an Members—instantly.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMTUwNDFmZjEtZjMzYy00YjgzLTlhNjYtODdhNmU3MTQ2NzU3IiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9&pageName=a1fbaddf5a43d0f4b029",
+        "tags": ["fitness", "gym_management", "health_monitoring", "wellness_insights", "member_progress"],
+        "data_source": "N/A",
+        "thumbnail" : "fitness.png",
+        "dataset_files": [
+          {
+            "name": "Gym Operations Dataset",
+            "file": "Fitness.xlsx",
+            "description": "This dataset tracks gym member profiles, payments, operational expenses, and color codes for a fitness center management system."
+          }
+        ],
+        "pbix_file": "Fitness Analytics Dashboard.pbix"
+      },
+      {
         "id": "sales dashboard",
         "title": "Amazon Sales Dashboard",
         "description": "This Power BI dashboard provides a comprehensive analysis of Amazon's sales data, delivering actionable insights into key business areas like order fulfillment, shipping, and category performance. It is designed to enhance decision-making and streamline operations.",
