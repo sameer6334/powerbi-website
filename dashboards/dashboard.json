@@ -200,6 +200,38 @@
         "pbix_file": "Fitness Analytics Dashboard.pbix"
       },
       {
+        "id": "employee performance",
+        "title": "Employee Performance Dashboard",
+        "description": "This Employee Performance Dashboard provides a clear overview of individual employee productivity and engagement. It includes employee details such as name, ID, location, and joining date, along with KPIs for call performance and meeting performance. Users can select any employee from the dropdown slicer to view their status, performance metrics, and targets. The charts help analyze call and meeting counts by client, offering insights into work efficiency and output.",
+        "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMzYyYzljZTktYmM4Ny00Y2VkLThhYTMtNTBlNjJkYWVhNmZiIiwidCI6ImVlOTdjMTkyLWY0MWQtNGU3YS04NGU5LWM0MWRkYzIxYWI5NyJ9",
+        "tags": ["EmployeePerformance", "PowerBI", "HRAnalytics", "DataVisualization", "BusinessIntelligence"],
+        "data_source": "N/A",
+        "thumbnail" : "employee.png",
+        "dataset_files": [
+          {
+            "name": "Employee Performance Data",
+            "file": "Employee.xlsx",
+            "description": "Contains employee details including joining date, name, state, city, target calls, monthly target meetings, and ID."
+          },
+          {
+            "name": "Employee Profile Data",
+            "file": "Employee_Details.xlsx",
+            "description": "Includes employee information with joining date, name, state, city, age, and active status.."
+          },
+          {
+            "name": "Meeting Records Data",
+            "file": "Meetings.xlsx",
+            "description": "Lists meeting records with meeting date, employee name, ID, and client ID."
+          },
+          {
+            "name": "Call Activity Data",
+            "file": "Calls.xlsx",
+            "description": "Tracks call records with call date, employee name, ID, and client ID."
+          }
+        ],
+        "pbix_file": "Employee Performance Dashboard.pbix"
+      },
+      {
         "id": "sales dashboard",
         "title": "Amazon Sales Dashboard",
         "description": "This Power BI dashboard provides a comprehensive analysis of Amazon's sales data, delivering actionable insights into key business areas like order fulfillment, shipping, and category performance. It is designed to enhance decision-making and streamline operations.",
